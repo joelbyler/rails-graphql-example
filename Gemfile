@@ -18,10 +18,13 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'graphql', '1.8.13'
 
+gem 'search_object', '1.2.0'
+gem 'search_object_graphql', '0.1'
+
 gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry'
 end
 
 group :development do
