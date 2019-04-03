@@ -1,24 +1,145 @@
-# README
+# CleRb GraphQL sample app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**Slides**: https://docs.google.com/presentation/d/1hjau6Dp5bmBZ--G8ctIxTmO_heLVaSYuHBS0F-zI4fI/edit?usp=sharing
 
-Things you may want to cover:
+**REF**: https://www.howtographql.com/graphql-ruby/
 
-* Ruby version
+## Sample queries
 
-* System dependencies
+**Sign a user in and retrieve an auth token (using dev seeds)**
+```
+mutation {
+  signinUser(email:{
+    email: "jose@example.com",
+    password:  "abcdef"
+  }) {
+    token
+    user {
+      id
+    }
+  }
+}
+```
 
-* Configuration
+query a link
+```
+query {
+  allLinks(filter:{captionContains:"example"}) {
+    caption
+  }
+}
+```
 
-* Database creation
+create a new link
+```
+mutation {
+  createLink(url:"tester", caption:"testerson") {
+    id
+  }
+}
+```
 
-* Database initialization
+**Links and the votes for them**
+```
+query {
+  allLinks{
+    url
+    caption
+    votes {
+      user {
+        name
+      }
+    }
+  }
+}
+```
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## MOAR Examples
+```
+query {
+  __schema {
+    types {
+      name
+      description
+      fields {
+        name
+        description
+      }
+    }
+  }
+}
 
-* Deployment instructions
+# query {
+#   allLinks {
+#     url
+#     caption
+#   }
+# }
 
-* ...
+# mutation {
+#   createVote(linkId:"3") {
+#     link {
+#       caption
+#     }
+#     user {
+#       name
+#     }
+#   }
+# }
+
+# query {
+#   allLinks {
+#     url
+#     caption
+#     votes {
+#       id
+#       user {
+#         email
+#       }
+#     }
+#   }
+# }
+
+# mutation {
+#   createLink(url:"http://meetup.com", caption:"great place to meet great folks") {
+#     id
+#   }
+# }
+
+# query {
+#   filterLinks(filter:{captionContains:"meet"}) {
+#     url
+#     caption
+#   }
+# }
+
+# query {
+#   filterLinks(
+#     filter: {
+#       captionContains: "graph",
+#       OR: [{
+#       	urlContains: "meet",
+#         OR: {
+#           urlContains: "up"
+#         }
+#       }, {
+#             captionContains: "ruby"
+#       }]
+#     }) {
+#     url
+#     caption
+#   }
+# }
+
+# mutation {
+#   signinUser(email:{
+#     email: "jose@example.com",
+#     password:  "abcdef"
+#   }) {
+#     token
+#     user {
+#       id
+#     }
+#   }
+# }

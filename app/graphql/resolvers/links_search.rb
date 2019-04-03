@@ -12,7 +12,7 @@ class Resolvers::LinksSearch
   # inline input type definition for the advance filter
   class LinkFilter < ::Types::BaseInputObject
     argument :OR, [self], required: false
-    argument :description_contains, String, required: false
+    argument :caption_contains, String, required: false
     argument :url_contains, String, required: false
   end
 
@@ -28,8 +28,8 @@ class Resolvers::LinksSearch
   def normalize_filters(value, branches = [])
     scope = Link.all
 
-    scope = scope.like(:description, value['description_contains']) if value['description_contains']
-    scope = scope.like(:url, value['url_contains']) if value['url_contains']
+    scope = scope.like(:caption, value['captionContains']) if value['captionContains']
+    scope = scope.like(:url, value['urlContains']) if value['urlContains']
 
     branches << scope
 

@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2019_03_30_165251) do
 
   create_table "links", force: :cascade do |t|
     t.string "url"
-    t.text "description"
+    t.text "caption"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"

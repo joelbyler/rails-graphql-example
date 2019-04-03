@@ -2,8 +2,8 @@
 
 one:
   url: MyString
-  description: MyText
+  caption: MyText
 
 two:
   url: MyString
-  description: MyText
+  caption: MyText

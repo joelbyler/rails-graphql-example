@@ -8,11 +8,11 @@ class Mutations::CreateLinkTest < ActiveSupport::TestCase
   test 'create a new link' do
     link = perform(
       url: 'http://example.com',
-      description: 'description',
+      caption: 'caption',
     )
 
     assert link.persisted?
-    assert_equal link.description, 'description'
+    assert_equal link.caption, 'caption'
     assert_equal link.url, 'http://example.com'
   end
 end
